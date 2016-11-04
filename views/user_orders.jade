@@ -1,0 +1,5 @@
+extends layout
+
+block content
+    - each order, index in orders
+        p= index + ' ' + order.id  + ' ' + order.filename + ' ' + order.status.Name  
