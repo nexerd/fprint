@@ -37,11 +37,11 @@ exports.SignIn = function(req, res, next)
     if (user && user.password == password)
     {
         res.cookie("id", user.id);
-        res.redirect("/");
+        res.send(user);
     }
     else
     {
-        res.redirect("/user/signup");
+        res.status(401).send({ message: 'Неправильынй логин или пароль ' });
     }
 }
 
