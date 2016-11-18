@@ -8,9 +8,12 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var order = require('./routes/order');
+var printservice = require("./routes/printservice")
 var auth = require('./auth/auth');
 
 var mobileUser = require('./routes/mobile/user');
+var mobileOrder = require('./routes/mobile/order');
+var mobilePrintService = require('./routes/mobile/printservice');
 
 var app = express();
 
@@ -28,10 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/user', user);
-app.use('/user', auth.IsAuthorized);
-app.use('/user', order);
-
 app.use('/mobile/user', mobileUser);
+app.use('/', auth.IsAuthorized);
+app.use('/', order);
+app.use('/mobile/', mobileOrder);
+app.use('/', printservice);
+app.use('/mobile/', mobilePrintService);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

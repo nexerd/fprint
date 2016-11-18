@@ -8,3 +8,5 @@ class PrintService
         this.rating = rating;
     }
 }
+
+module.exports = PrintService;

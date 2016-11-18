@@ -1,7 +1,7 @@
 var orderModel = require("../models/order");
-var Order_Status = require("../models/order_status").Order_Status;
+var Order_Status = require("../models/order_status");
 
-var orders = [ new orderModel(0, "Лаб 1. ТПР", 0, Order_Status.NotAccepted)];
+var orders = [ new orderModel(0, "Лаб 1. ТПР", 0, 0, Order_Status.NotAccepted)];
 
 exports.GetOrdersByUserId = function(user_id)
 {

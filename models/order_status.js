@@ -26,4 +26,4 @@ class Canceled extends Order_Status { static get Name() { return "Отменен
 class Finished extends Order_Status { static get Name() { return "Выполнен"; } }
 class Closed extends Order_Status { static get Name() { return "Закрыт"; } }
 
-exports.Order_Status = Order_Status;
+module.exports = Order_Status;
