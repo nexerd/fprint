@@ -1,6 +1,6 @@
 let UsersData = require("../data/users");
 
-exports.checkCookies = function(req, res, next)
+exports.IsAuthorized = function(req, res, next)
 {
     let id = req.cookies.id;
     let user = UsersData.GetUserById(id);
@@ -10,7 +10,7 @@ exports.checkCookies = function(req, res, next)
     }
     else
     {
-        res.redirect("/user/signup");
+        res.redirect("/user/signin");
     }
 }
 
@@ -37,15 +37,45 @@ exports.SignIn = function(req, res, next)
     if (user && user.password == password)
     {
         res.cookie("id", user.id);
-        res.send(user);
+        res.redirect("/");
     }
     else
     {
-        res.status(401).send({ message: 'Неправильынй логин или пароль ' });
+        res.redirect("/user/signin");
     }
 }
 
 exports.SignOut = function(req, res, next)
 {
     res.clearCookie('id');
+}
+
+exports.MobileSignIn = function(req, res, next)
+{
+    let login = req.body.login;
+    let password = req.body.password;
+    let user = UsersData.GetUserByLogin(login);
+    if (user && user.password == password)
+    {
+        res.cookie("id", user.id);
+        res.send(user);
+    }
+    else
+    {
+        res.status(401).send({ message: 'Неправильынй логин или пароль' });
+    }
+}
+
+exports.MobileIsAuthorized = function(req, res, next)
+{
+    let id = req.cookies.id;
+    let user = UsersData.GetUserById(id);
+    if (user)
+    {
+        next();
+    }
+    else
+    {
+        res.status(401).send({ message: 'Необходима авторизация' });
+    }
 }

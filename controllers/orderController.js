@@ -6,3 +6,10 @@ exports.UserOrders = function(req, res)
     let orders = OrdersData.GetOrdersByUserId(id);
     res.render('user_orders', { title: 'Express', orders: orders } );
 }
+
+exports.MobileUserOrders = function(req, res)
+{
+    let id = req.cookies.id;
+    let orders = OrdersData.GetOrdersByUserId(id);
+    res.send(orders);
+}
