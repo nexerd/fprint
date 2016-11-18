@@ -11,5 +11,19 @@ exports.MobileUserOrders = function(req, res)
 {
     let id = req.cookies.id;
     let orders = OrdersData.GetOrdersByUserId(id);
-    res.send(orders);
+    let buff = [];
+    orders.forEach(o => 
+    {
+        buff.push(
+            {
+                hash: o.hash,
+                id : o.id,
+                filename : o.filename,
+                user_id : o.user_id,
+                printservice_id : o.printservice_id,
+                status : o.status.Name, 
+                price : o.price
+            });
+    });
+    res.send(buff);
 }

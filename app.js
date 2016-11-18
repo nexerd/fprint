@@ -30,13 +30,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/user', user);
 app.use('/mobile/user', mobileUser);
+app.use('/mobile', auth.MobileIsAuthorized);
+app.use('/mobile/', mobileOrder);
+app.use('/mobile/', mobilePrintService);
+app.use('/user', user);
 app.use('/', auth.IsAuthorized);
 app.use('/', order);
-app.use('/mobile/', mobileOrder);
 app.use('/', printservice);
-app.use('/mobile/', mobilePrintService);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
