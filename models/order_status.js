@@ -2,7 +2,7 @@ class Order_Status
 { 
     static get NotAccepted() { return NotAccepted;  }
 
-    static get Accepted() { return Accepedt; }
+    static get Accepted() { return Accepted; }
 
     static get Rejected() { return Rejected; }
 

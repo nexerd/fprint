@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  p Заказ печати
+  form(method='post', action='/make_order')
+    p
+      input(name='file_name',  type='text')
+    p
+      input(name='На печать', type='submit')

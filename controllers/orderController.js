@@ -7,6 +7,27 @@ exports.UserOrders = function(req, res)
     res.render('user_orders', { title: 'Express', orders: orders } );
 }
 
+exports.MakeOrderView = function(req, res)
+{
+    res.render('make_order', { title: 'Express' } );
+}
+
+exports.MakeOrder = function(req, res)
+{
+    let id = req.cookies.id;
+    let file_name = req.body.file_name;
+    if (file_name)
+    {
+        let new_order_id = OrdersData.MakeOrder(file_name, id, Math.random() * 100);
+        if (new_order_id)
+        {  
+            res.redirect("/orders");  
+            return;  
+        }    
+    }
+    res.redirect("/make_order");
+}
+
 exports.MobileUserOrders = function(req, res)
 {
     let id = req.cookies.id;
