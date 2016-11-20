@@ -21,6 +21,6 @@ exports.CreateUser = function(name, login, password)
         if (users[i].login == login)
             return -1;
     var id = users.length;
-    users.push(new userModel(id, "Витайлий", "1", "1"));
+    users.push(new userModel(id, name, login, password));
     return id;
 }

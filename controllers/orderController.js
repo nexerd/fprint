@@ -18,7 +18,7 @@ exports.MakeOrder = function(req, res)
     let file_name = req.body.file_name;
     if (file_name)
     {
-        let new_order_id = OrdersData.MakeOrder(file_name, id, Math.random() * 100);
+        let new_order_id = OrdersData.MakeOrder(file_name, id, Math.round(Math.random() * 10000) / 100);
         if (new_order_id)
         {  
             res.redirect("/orders");  
